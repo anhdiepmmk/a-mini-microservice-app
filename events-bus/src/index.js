@@ -5,8 +5,12 @@ const axios = require('axios');
 const app = express();
 app.use(bodyParser.json());
 
+const events = [];
+
 app.post('/events', (req, res) => {
     const event = req.body;
+
+    events.push(event);
 
     axios.post('http://localhost:8000/events', event);
     axios.post('http://localhost:8001/events', event);
@@ -16,6 +20,10 @@ app.post('/events', (req, res) => {
     res.json({
         status: 'OK',
     })
+});
+
+app.get('/events', (req, res) => {
+    res.send(events);
 });
 
 const port = process.env.PORT || 8005;
