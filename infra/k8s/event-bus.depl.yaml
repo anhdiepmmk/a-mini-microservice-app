@@ -15,3 +15,16 @@ spec:
       containers:
         - name: event-bus
           image: anhdiepmmk/event-bus:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  selector:
+    app: event-bus
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 8005
+      targetPort: 8005
