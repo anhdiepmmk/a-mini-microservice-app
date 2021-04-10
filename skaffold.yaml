@@ -3,12 +3,14 @@ kind: Config
 metadata:
   name: a-mini-microservice-app
 build:
+  local:
+    push: false
   artifacts:
     - image: anhdiepmmk/client
       context: client
       sync:
         manual:
-          - src: "**/*"
+          - src: "src/**/*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
