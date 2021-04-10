@@ -57,7 +57,7 @@ const PORT = 8002 || process.env.PORT;
 app.listen(PORT, async () => {
  console.log(`Listening on ${PORT}`);
 
- const res = await axios.get('http://localhost:8005/events');
+ const res = await axios.get('http://event-bus-srv:8005/events');
  for(const event of res.data) {
   console.log('Processing event: ', event.type);
   handleEvent(event.type, event.data);
