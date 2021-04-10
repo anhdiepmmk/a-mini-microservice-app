@@ -8,14 +8,15 @@ app.use(bodyParser.json());
 const events = [];
 
 app.post('/events', (req, res) => {
+    console.log('Received event: ', req.body);
+    
     const event = req.body;
-
     events.push(event);
 
-    axios.post('http://localhost:8000/events', event);
-    axios.post('http://localhost:8001/events', event);
-    axios.post('http://localhost:8002/events', event);
-    axios.post('http://localhost:8003/events', event);
+    axios.post('http://posts-clusterip-srv:8000/events', event);
+    // axios.post('http://localhost:8001/events', event);
+    // axios.post('http://localhost:8002/events', event);
+    // axios.post('http://localhost:8003/events', event);
 
     res.json({
         status: 'OK',
